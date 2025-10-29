@@ -1,0 +1,138 @@
+# System behavior configurations
+start-at-login = true
+automatically-unhide-macos-hidden-apps = true # Helps with Alfred app switching
+
+# Set default layout orientation
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'horizontal'
+
+# Accordion padding for documentation/terminal tabs
+accordion-padding = 30
+
+# Mouse follows focus when focused monitor changes
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Gaps configuration
+[gaps]
+inner.horizontal = 12 # Gap between windows side by side
+inner.vertical = 12   # Gap between windows stacked on top of each other
+outer.left = 8        # Gap between windows and left edge of screen
+outer.bottom = 8      # Gap between windows and bottom edge of screen
+outer.top = 8         # Gap between windows and top edge of screen
+outer.right = 8       # Gap between windows and right edge of screen
+
+# Make all windows tiling by default
+[[on-window-detected]]
+check-further-callbacks = true
+run = 'layout tiling'
+
+# Default workspace for unassigned applications
+[[on-window-detected]]
+if.during-aerospace-startup = false
+run = 'move-node-to-workspace 1'
+
+# Workspace 2 - Browser
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 2'
+
+# Workspace 3 - Communication & Calendar
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.google.chat.electron'
+run = 'move-node-to-workspace 3'
+
+# Workspace 4 - Development
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+run = 'move-node-to-workspace 4'
+
+# Workspace 5 - Terminal
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace 5'
+
+# Workspace 6 - Video
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = 'move-node-to-workspace 6'
+
+# Workspace 8 - Notes
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace 8'
+
+
+# Key bindings (i3-like with alt as modifier)
+[mode.main.binding]
+# Disable macOS hide shortcuts to prevent conflicts
+cmd-h = []     # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+
+# Switch to workspace
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+
+# Move focused window to workspace
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-8 = 'move-node-to-workspace 8'
+alt-shift-9 = 'move-node-to-workspace 9'
+
+# Focus movement
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+# Move windows
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# Layouts
+alt-f = 'fullscreen'
+alt-shift-space = 'layout floating tiling'
+alt-e = 'layout tiles horizontal vertical' # Toggle orientation
+alt-w = 'layout h_accordion'               # Stack windows horizontally (good for docs)
+alt-s = 'layout v_accordion'               # Stack windows vertically (good for terminals)
+
+# Window management
+alt-shift-q = 'close'                   # Close window
+alt-shift-f = 'macos-native-fullscreen' # Native fullscreen (good for Zoom)
+alt-x = 'flatten-workspace-tree'        # Reset layout if it gets messy
+
+# Resize mode
+alt-r = 'mode resize'
+
+[mode.resize.binding]
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
+enter = 'mode main'
+esc = 'mode main'

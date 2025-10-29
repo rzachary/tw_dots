@@ -10,15 +10,36 @@
 
 
 source ~/.config/zsh/.zprofile #.zshenv stuff
-export PATH=~/.local/bin:$PATH #PTsh path
 export TERM="xterm-256color"
+
+# Optimized History Configuration
 export HISTFILE=~/.config/zsh/.zsh_history
+export HISTSIZE=50000
+export SAVEHIST=50000
+setopt HIST_IGNORE_DUPS     # Don't save duplicate commands
+setopt HIST_IGNORE_SPACE    # Don't save commands starting with space
+setopt SHARE_HISTORY        # Share history between sessions
+setopt HIST_VERIFY          # Show command before executing from history
+setopt HIST_EXPIRE_DUPS_FIRST # Remove duplicates first when trimming history
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 
+# Z Shell Configs with error checking
+ZSH_AUTOSUGGESTIONS_PATH="$(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+ZSH_SYNTAX_HIGHLIGHTING_PATH="$(brew --prefix)/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-# Z Shell Configs
-source "$(brew --prefix)/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$(brew --prefix)/opt/zsh-syntax-highlighting/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [[ -f "$ZSH_AUTOSUGGESTIONS_PATH" ]]; then
+    source "$ZSH_AUTOSUGGESTIONS_PATH"
+else
+    echo "Warning: zsh-autosuggestions not found at $ZSH_AUTOSUGGESTIONS_PATH"
+fi
+
+if [[ -f "$ZSH_SYNTAX_HIGHLIGHTING_PATH" ]]; then
+    source "$ZSH_SYNTAX_HIGHLIGHTING_PATH"
+else
+    echo "Warning: zsh-syntax-highlighting not found at $ZSH_SYNTAX_HIGHLIGHTING_PATH"
+fi
 
 
 # AWS CLI Sourcing
@@ -31,7 +52,7 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/compl
 
 
 # Powerlevel10k Theme
-source "$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme"
+# source "$(brew --prefix)/powerlevel10k/powerlevel10k.zsh-theme"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
@@ -50,23 +71,27 @@ GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 
 export PATH="$PATH:$GEM_HOME/bin"
 
-### - GO LANG DEV
-
+### - GO LANG DEV (GOPATH set in .zprofile)
 export GOBIN="$HOME/.local/go/bin"
-export GOPATH="$HOME/.local/go"
 
-export PATH="$PATH:$HOME/.local/go/bin"
+## Consolidated PATH Management
+# Add local directories to PATH if they exist
+for dir in "$HOME/.local/bin" "$HOME/.bin" "$HOME/Applications" "$HOME/.local/go/bin"; do
+    if [ -d "$dir" ]; then
+        case ":$PATH:" in
+            *":$dir:"*) ;; # Already in PATH
+            *) PATH="$dir:$PATH" ;;
+        esac
+    fi
+done
 
-## PATH SET
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
-fi
+# Source local environment if available
+[[ -f "$HOME/.local/share/../bin/env" ]] && . "$HOME/.local/share/../bin/env"
 
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
-fi
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [ -d "$HOME/Applications" ] ;
-  then PATH="$HOME/Applications:$PATH"
-fi
-
+# Python and other tool paths
+export PATH="$PATH:/Users/rickeyzachary/Library/Python/3.11/bin"
+export PATH="$PATH:/opt/homebrew/opt/libpq/bin"

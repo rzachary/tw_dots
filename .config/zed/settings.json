@@ -4,43 +4,75 @@
 // documentation: https://zed.dev/docs/configuring-zed
 //
 // To see all of Zed's default settings without changing your
-// custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "ui_font_size": 12,
-  "buffer_font_size": 12,
-  "buffer_font_family": "FiraCode Nerd Font",
-  "buffer_font_features": {
-    "liga": true,
-    "calt": true
-  },
-  "lsp": {
-    "gopls": {
-      "initialization_options": {
-        "hints": {
-          "assignVariableTypes": true,
-          "compositeLiteralFields": true,
-          "compositeLiteralTypes": true,
-          "constantValues": true,
-          "functionTypeParameters": true,
-          "parameterNames": true,
-          "rangeVariableTypes": true
-        }
-      }
-    },
-    "typescript-language-server": {
-      "initialization_options": {
-        "preferences": {
-          "includeInlayParameterNameHints": "all",
-          "includeInlayParameterNameHintsWhenArgumentMatchesName": true,
-          "includeInlayFunctionParameterTypeHints": true,
-          "includeInlayVariableTypeHints": true,
-          "includeInlayVariableTypeHintsWhenTypeMatchesName": false,
-          "includeInlayPropertyDeclarationTypeHints": true,
-          "includeInlayFunctionLikeReturnTypeHints": true,
-          "includeInlayEnumMemberValueHints": true
-        }
+  "context_servers": {
+    "playwright-server": {
+      "source": "custom",
+      "command": {
+        "path": "{",
+        "args": [
+          "",
+          "\"mcpServers\":",
+          "{",
+          "",
+          "",
+          "",
+          "\"playwright\":",
+          "{",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "\"command\":",
+          "\"npx\",",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "\"args\":",
+          "[",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "\"@playwright/mcp@latest\"",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "]",
+          "",
+          "",
+          "",
+          "}",
+          "",
+          "}\n}"
+        ],
+        "env": null
       }
     }
+  },
+  "agent": {
+    "model_parameters": [],
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "version": "2"
+  },
+  "ui_font_size": 12,
+  "buffer_font_size": 13.0,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark"
   }
 }
