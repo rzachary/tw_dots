@@ -1,0 +1,84 @@
+# Security & Credentials
+.aws/
+.config/gcloud/
+.config/github-copilot/
+.ssh/
+*.pem
+*.key
+*_rsa
+*_dsa
+*_ecdsa
+*_ed25519
+credentials
+secrets
+.env
+.env.local
+.env.*.local
+
+# Shell History & Sessions
+.config/zsh/.zsh_history
+.config/zsh/.zsh_sessions/
+.config/zsh/.zcompdump*
+.config/zsh/.zcompcache/
+.bash_history
+.sh_history
+.history
+
+# Application Cache & Runtime Data
+.config/zed/embeddings/
+.config/zed/.tmp*
+.config/zed/prompts/
+.config/configstore/
+.config/dlv/
+.config/crossnote/
+.config/jgit/
+.config/nvm/
+.config/uv/
+.config/gtk-2.0/
+
+# Editor & IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Package Managers
+node_modules/
+package-lock.json
+yarn.lock
+.npm/
+.yarn/
+
+# Temporary Files
+*.tmp
+*.temp
+.tmp/
+temp/
+
+# Personal/Private configs
+.config/zsh/.extra
+.config/copilot/
+.p10k.zsh
+
+# Logs
+*.log
+logs/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# System files
+.DS_Store
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Application specific
+.config/fish/fish_variables
+.config/fish/fishd.*

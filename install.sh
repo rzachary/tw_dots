@@ -118,51 +118,47 @@ brew install awscli
 # Install Azure CLI
 brew install azure-cli
 
+# install Gcloud CLI
+brew install --cask gcloud-cli
+
 brew install romkatv/powerlevel10k/powerlevel10k
 
 # Install Applications
+brew install --cask 1password
+brew install --cask nikitabobko/tap/aerospace
+brew install --cask alfred
+brew install --cask bartender
+brew install --cask bruno
+brew install --cask google-chrome
+brew install --cask dash
+brew install --cask ghostty
+brew install --cask gimp
+brew install --cask lm-studio
+brew install --cask leapp
+brew install --cask macdown
+brew install --cask microsoft-word
+brew install --cask microsoft-excel
+brew install --cask microsoft-powerpoint
+brew install --cask microsoft-teams
+brew install --cask shottr
+brew install --cask tableplus
+brew install --cask transmit
+brew install --cask visual-studio-code
+brew install --cask vlc
+brew install --cask zed
+brew install --cask zen
 
-cask=(
-1password
-nikitabobko/tap/aerospace
-alacritty
-alfred
-bartender
-bruno
-google-chrome
-dash
-gimp
-iterm2
-leapp
-macdown
-microsoft-word
-microsoft-excel
-microsoft-powerpoint
-microsoft-teams
-shottr
-tableplus
-transmit
-visual-studio-code
-vlc
-zed
-)
 
-fonts=(
-font-fira-code-nerd-font
-font-jetbrains-mono-nerd-font
-font-roboto-mono-nerd-font
-font-source-code-pro-nerd-font
-font-ubuntu-nerd-font
-font-ubuntu-mono-nerd-font
-)
+brew install --cask font-fira-code-nerd-font
+brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask font-roboto-mono-nerd-font
+brew install --cask font-source-code-pro-nerd-font
+brew install --cask font-ubuntu-nerd-font
+brew install --cask font-ubuntu-mono-nerd-font
+
 
 brew update
 brew upgrade
-
-brew install ${brew[@]} #Homebrew App Installer
-brew cask install ${cask[@]} #Casks Installer
-mas install ${mas[@]} #Mac App Store Installer
-npm install ${npm[@]} #Install npm apps
 
 #Installing Vim-plug
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
